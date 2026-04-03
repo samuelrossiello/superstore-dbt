@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: superstore
+    project: gothic-sum-492014-r0
+    dataset: superstore
+    tables:
+      - name: orders
