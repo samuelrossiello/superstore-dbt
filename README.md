@@ -144,7 +144,7 @@ An interactive overview of Superstore sales performance and profitability. Featu
 ### Dashboard 2 — Customer Analytics
 An interactive exploration of customer behavior, lifetime value, and purchasing patterns. Features a dynamic scatter plot explorer with X/Y axis parameters, lifetime sales distribution by segment, order frequency distribution, and a top 15 customers ranked bar chart.
 
-<img width="1171" height="686" alt="image" src="https://github.com/user-attachments/assets/32da17f8-e401-4347-913f-b6335767ec07" />
+<img width="1185" height="688" alt="image" src="https://github.com/user-attachments/assets/34bd4c7a-f3ac-4fa6-b835-1bb0107cb557" />
 
 ### Dashboard 3 — Cohort Analysis
 An interactive exploration of customer retention patterns and acquisition trends by cohort month. Features a cohort retention heatmap built with a FIXED LOD expression, a retention decay curve, customer acquisition by cohort month, and average sales per customer by segment.
