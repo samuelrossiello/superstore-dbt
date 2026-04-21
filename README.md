@@ -147,9 +147,9 @@ An interactive exploration of customer behavior, lifetime value, and purchasing 
 <img width="1171" height="686" alt="image" src="https://github.com/user-attachments/assets/32da17f8-e401-4347-913f-b6335767ec07" />
 
 ### Dashboard 3 — Cohort Analysis
-An interactive exploration of customer retention and lifetime value by acquisition cohort. Features a cohort retention heatmap built with a FIXED LOD expression, a retention decay curve, customer acquisition by cohort month, and average sales per customer by segment.
+An interactive exploration of customer retention patterns and acquisition trends by cohort month. Features a cohort retention heatmap built with a FIXED LOD expression, a retention decay curve, customer acquisition by cohort month, and average sales per customer by segment.
 
-<img width="1180" height="683" alt="image" src="https://github.com/user-attachments/assets/e137f1e4-1e1a-4e7a-942f-76bf962602c3" />
+<img width="1178" height="688" alt="image" src="https://github.com/user-attachments/assets/091e93a6-5c63-42e7-b5a8-0b8487068b97" />
 
 ---
 
