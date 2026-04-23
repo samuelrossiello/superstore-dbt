@@ -31,6 +31,22 @@ view: mart_customer_summary {
     label: "Preferred category"
   }
 
+  dimension: is_high_value_customer {
+    type: yesno
+    sql: ${TABLE}.lifetime_sales > 5000 ;;
+    label: "Is high value customer?"
+    description: "Yes if customer lifetime sales exceed $5,000"
+  }
+
+  dimension: order_count_tier {
+    type: tier
+    tiers: [1, 3, 6, 10, 20]
+    style: interval
+    sql: ${TABLE}.order_count ;;
+    label: "Order count tier"
+    description: "Customer grouped by number of orders placed"
+  }
+
   # ── Measures ─────────────────────────────────────────────
 
   measure: total_customers {
@@ -54,6 +70,22 @@ view: mart_customer_summary {
     label: "Avg days between orders"
     value_format_name: decimal_1
     description: "Average number of days between a customer's orders"
+  }
+
+  measure: avg_customer_tenure {
+    type: average
+    sql: ${TABLE}.customer_tenure_days ;;
+    label: "Avg customer tenure (days)"
+    value_format_name: decimal_0
+    description: "Average number of days between first and last order across customers"
+  }
+
+  measure: total_lifetime_sales {
+    type: sum
+    sql: ${TABLE}.lifetime_sales ;;
+    label: "Total lifetime sales"
+    value_format_name: usd_0
+    description: "Sum of lifetime sales across all customers in the result set"
   }
 
 }
