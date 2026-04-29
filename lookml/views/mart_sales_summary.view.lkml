@@ -134,4 +134,12 @@ view: mart_sales_summary {
     description: "Uses sum_distinct to safely aggregate across joins"
   }
   
+  measure: weighted_profit_margin {
+    type: number
+    sql: ${total_profit} / NULLIF(${total_sales}, 0) ;;
+    label: "Weighted profit margin"
+    value_format_name: percent_2
+    description: "True weighted profit margin: total profit divided by total sales. Avoids average of averages by recalculating dynamically at query time."
+  }
+
 }
