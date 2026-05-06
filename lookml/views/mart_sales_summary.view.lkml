@@ -52,6 +52,106 @@ view: mart_sales_summary {
     description: "Sales grouped into performance bands"
   }
 
+  parameter: group_by_selector {
+    type: unquoted
+    label: "Group by"
+    description: "Select the dimension to group by in the explore"
+    allowed_value: {
+      label: "Region"
+      value: "region"
+    }
+    allowed_value: {
+      label: "Category"
+      value: "category"
+    }
+    allowed_value: {
+      label: "Segment"
+      value: "segment"
+    }
+    allowed_value: {
+      label: "State"
+      value: "state_province"
+    }
+    default_value: "region"
+  }
+
+  dimension: dynamic_group_by {
+    type: string
+    label: "Dynamic group by"
+    sql:
+      {% if group_by_selector._parameter_value == 'region' %}
+        ${TABLE}.region
+      {% elsif group_by_selector._parameter_value == 'category' %}
+        ${TABLE}.category
+      {% elsif group_by_selector._parameter_value == 'segment' %}
+        ${TABLE}.segment
+      {% elsif group_by_selector._parameter_value == 'state_province' %}
+        ${TABLE}.state_province
+      {% else %}
+        ${TABLE}.region
+      {% endif %}
+    ;;
+    description: "Dynamic dimension that changes based on the group by selector parameter"
+  }
+
+  parameter: date_granularity {
+    type: unquoted
+    label: "Date granularity"
+    description: "Select the date granularity for the time dimension"
+    allowed_value: {
+      label: "Day"
+      value: "DATE"
+    }
+    allowed_value: {
+      label: "Month"
+      value: "DATE_TRUNC"
+    }
+    allowed_value: {
+      label: "Quarter"
+      value: "DATE_TRUNC_QUARTER"
+    }
+    allowed_value: {
+      label: "Year"
+      value: "DATE_TRUNC_YEAR"
+    }
+    default_value: "DATE_TRUNC"
+  }
+
+  dimension: dynamic_date {
+    type: string
+    label: "Dynamic date"
+    sql:
+      {% if date_granularity._parameter_value == 'DATE' %}
+        CAST(${TABLE}.order_date AS STRING)
+      {% elsif date_granularity._parameter_value == 'DATE_TRUNC' %}
+        CAST(DATE_TRUNC(${TABLE}.order_date, MONTH) AS STRING)
+      {% elsif date_granularity._parameter_value == 'DATE_TRUNC_QUARTER' %}
+        CAST(DATE_TRUNC(${TABLE}.order_date, QUARTER) AS STRING)
+      {% elsif date_granularity._parameter_value == 'DATE_TRUNC_YEAR' %}
+        CAST(DATE_TRUNC(${TABLE}.order_date, YEAR) AS STRING)
+      {% else %}
+        CAST(DATE_TRUNC(${TABLE}.order_date, MONTH) AS STRING)
+      {% endif %}
+    ;;
+    description: "Dynamic date dimension that changes granularity based on the date granularity parameter"
+  }
+
+  filter: category_filter {
+    type: string
+    label: "Category filter"
+    description: "Filter total sales to a specific category"
+    suggest_dimension: category
+  }
+
+  measure: filtered_category_sales {
+    type: sum
+    sql: ${TABLE}.total_sales ;;
+    label: "Filtered category sales"
+    value_format_name: usd_0
+    description: "Total sales filtered to the category selected in the category filter"
+    filters: [category_filter: "{% parameter category_filter %}"]
+  }
+
   # ── Measures ─────────────────────────────────────────────
 
   measure: total_sales {
