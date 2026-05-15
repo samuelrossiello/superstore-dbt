@@ -152,6 +152,21 @@ view: mart_sales_summary {
     filters: [category_filter: "{% parameter category_filter %}"]
   }
 
+  dimension: customer_order_cohort {
+    type: string
+    sql:
+      CASE
+        WHEN ${TABLE}.order_date < '2021-01-01' THEN 'Pre-2021'
+        WHEN ${TABLE}.order_date >= '2021-01-01' AND ${TABLE}.order_date < '2022-01-01' THEN '2021'
+        WHEN ${TABLE}.order_date >= '2022-01-01' AND ${TABLE}.order_date < '2023-01-01' THEN '2022'
+        WHEN ${TABLE}.order_date >= '2023-01-01' AND ${TABLE}.order_date < '2024-01-01' THEN '2023'
+        ELSE '2024+'
+      END
+    ;;
+    label: "Order cohort"
+    description: "Groups orders into yearly cohorts based on order date — useful for comparing performance across time periods"
+  }
+
   # ── Measures ─────────────────────────────────────────────
 
   measure: total_sales {
@@ -242,4 +257,28 @@ view: mart_sales_summary {
     description: "True weighted profit margin: total profit divided by total sales. Avoids average of averages by recalculating dynamically at query time."
   }
 
+  measure: total_sales_prior_period {
+    type: sum
+    sql: ${TABLE}.total_sales ;;
+    label: "Total sales (prior period)"
+    value_format_name: usd_0
+    description: "Total sales for the prior period — used for period-over-period comparison"
+    filters: [order_date: "last year"]
+  }
+
+  measure: sales_period_over_period_change {
+    type: number
+    sql: (${total_sales} - ${total_sales_prior_period}) / NULLIF(${total_sales_prior_period}, 0) ;;
+    label: "Sales PoP change"
+    value_format_name: percent_2
+    description: "Percentage change in total sales vs prior period"
+  }
+
+  measure: sales_running_total {
+    type: running_total
+    sql: ${total_sales} ;;
+    label: "Sales running total"
+    value_format_name: usd_0
+    description: "Cumulative sales running total — only meaningful when sorted by date"
+  }
 }
