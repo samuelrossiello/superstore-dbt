@@ -47,6 +47,21 @@ view: mart_customer_summary {
     description: "Customer grouped by number of orders placed"
   }
 
+  dimension: customer_acquisition_cohort {
+    type: string
+    sql:
+      CASE
+        WHEN ${TABLE}.first_order_date < '2021-01-01' THEN 'Pre-2021'
+        WHEN ${TABLE}.first_order_date >= '2021-01-01' AND ${TABLE}.first_order_date < '2022-01-01' THEN '2021'
+        WHEN ${TABLE}.first_order_date >= '2022-01-01' AND ${TABLE}.first_order_date < '2023-01-01' THEN '2022'
+        WHEN ${TABLE}.first_order_date >= '2023-01-01' AND ${TABLE}.first_order_date < '2024-01-01' THEN '2023'
+        ELSE '2024+'
+      END
+    ;;
+    label: "Customer acquisition cohort"
+    description: "Groups customers into yearly cohorts based on their first order date — true acquisition cohort for tracking customer behavior over time"
+  }
+
   # ── Measures ─────────────────────────────────────────────
 
   measure: total_customers {
