@@ -252,12 +252,12 @@ Customer behavior analysis powered by `mart_customer_summary`. Four customer KPI
 #### Page 3 — Sales Performance Trends
 Period-over-period analysis powered by `mart_sales_summary`. Four KPI scorecards with dynamic year-over-year comparison deltas, monthly sales trend line chart, and cumulative sales area chart. Date range filter drives the PoP comparison automatically.
 
-<img width="958" height="722" alt="image" src="https://github.com/user-attachments/assets/1132f07e-5d70-497c-986c-581aac7b9f78" />
+<img width="957" height="717" alt="image" src="https://github.com/user-attachments/assets/7f959844-e60a-45d2-be63-ca00264dfc1b" />
 
 #### Page 4 — Cohort Analysis
 Full historical cohort analysis with no date filter applied by design. Customers by acquisition cohort grouped by first order year, and sales by order cohort grouped by order year. Powered by both `mart_customer_summary` and `mart_sales_summary`.
 
-<img width="957" height="717" alt="image" src="https://github.com/user-attachments/assets/7f959844-e60a-45d2-be63-ca00264dfc1b" />
+<img width="958" height="722" alt="image" src="https://github.com/user-attachments/assets/1132f07e-5d70-497c-986c-581aac7b9f78" />
 
 ---
 
