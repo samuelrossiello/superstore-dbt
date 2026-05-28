@@ -242,22 +242,22 @@ An interactive exploration of customer retention patterns and acquisition trends
 #### Page 1 — Executive Summary
 Sales performance overview powered by `mart_sales_summary`. Four KPI scorecards with total sales, profit, units sold, and weighted profit margin. Monthly sales trend line chart and sales by region and category horizontal bar charts. Cross-page filters for date range, region, and segment.
 
-[SCREENSHOT PAGE 1]
+<img width="962" height="721" alt="image" src="https://github.com/user-attachments/assets/fb29ebd2-f7da-45ef-83c1-66cce9a04a5f" />
 
 #### Page 2 — Customer Analytics
 Customer behavior analysis powered by `mart_customer_summary`. Four customer KPI scorecards, average order value by segment, customers by preferred category bar chart, and a top 10 customers by lifetime sales table. Date filter uses `first_order_date` as a proxy — noted as a known limitation on the dashboard itself.
 
-[SCREENSHOT PAGE 2]
+<img width="960" height="718" alt="image" src="https://github.com/user-attachments/assets/26352f37-82d8-440b-8f40-aad0fbbf8a39" />
 
 #### Page 3 — Sales Performance Trends
 Period-over-period analysis powered by `mart_sales_summary`. Four KPI scorecards with dynamic year-over-year comparison deltas, monthly sales trend line chart, and cumulative sales area chart. Date range filter drives the PoP comparison automatically.
 
-[SCREENSHOT PAGE 3]
+<img width="958" height="722" alt="image" src="https://github.com/user-attachments/assets/1132f07e-5d70-497c-986c-581aac7b9f78" />
 
 #### Page 4 — Cohort Analysis
 Full historical cohort analysis with no date filter applied by design. Customers by acquisition cohort grouped by first order year, and sales by order cohort grouped by order year. Powered by both `mart_customer_summary` and `mart_sales_summary`.
 
-[SCREENSHOT PAGE 4]
+<img width="957" height="717" alt="image" src="https://github.com/user-attachments/assets/7f959844-e60a-45d2-be63-ca00264dfc1b" />
 
 ---
 
